@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Project: Rock, paper, scissors</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+</head>
+<body>
+<h1 class= "text-warning">The Rock Paper Scissors Game</h1>
+<div class="selections">
+	<button class="btn-default" id="rock">Rock</button>
+	<button class="btn-default" id="paper">Paper</button>
+	<button class="btn-default" id="scissors">Scissors</button>
+</div>
+<div class="results">
+</div>
+<script type="text/javascript">
+// make the buttons work and functions appear on screen
+const buttons = document.querySelectorAll('button');
+const results = document.querySelector('.results')
+
+buttons.forEach((button)=>{
+button.addEventListener('click', (e) =>{
+results.removeChild(results.childNodes[0]);
+var result = document.createElement('p');
+result.textContent = playRound(button.id);
+results.appendChild(result);
+});
+});
+
+// function for computer to select a move
+
+function computerGame() {
+	var selections = ["rock", "paper", "scissors"];
+	return selection = selections[Math.floor(Math.random() * 3)];
+}
+
+function playRound(playerSelect, computerSelect = computerGame()){
+	// variables 
+	var win = ("You beat me! " + playerSelect + " terminates " + computerSelect + "!");
+	var lose = ("I beat you, loser " + computerSelect + " terminates " + playerSelect + "!");
+	var draw = ("No one wins! " + playerSelect + "smiles happily alive " + computerSelect + ".");
+
+if (computerSelect === "rock"){
+	if(playerSelect === "rock"){
+		return draw;
+	} else if(playerSelect === "scissors") {
+		return lose;
+	} else{
+		return win;
+	}
+} else if(computerSelect === "paper"){
+	if(playerSelect === "rock"){
+		return lose;
+	}else if (playerSelect === "scissors"){
+		return win;
+	}else return draw;
+}else {
+	if (playerSelect === "rock") {
+		return win;
+	} else if(playerSelect === "scissors"){
+		return draw;
+	}else {
+		return lose;
+	}
+}
+
+
+}
+</script>
+</body>
+</html>
